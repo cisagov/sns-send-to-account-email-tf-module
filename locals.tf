@@ -5,9 +5,9 @@
 data "aws_caller_identity" "this" {
 }
 
-# Retrieve the information for all accounts in the organization.  This
-# is used, for instance, to lookup the account IDs for the user
-# account.
+# Retrieve the information for all accounts in the organization.
+# This is used to look up the email address associated with the
+# calling account.
 data "aws_organizations_organization" "org" {
   provider = aws.organizations_read_only
 }
