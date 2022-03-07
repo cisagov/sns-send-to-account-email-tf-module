@@ -2,33 +2,26 @@
 
 [![GitHub Build Status](https://github.com/cisagov/cw-alarm-sns-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/cw-alarm-sns-tf-module/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) [Terraform
-module](https://www.terraform.io/docs/modules/index.html) GitHub
-repository started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
+A Terraform module for:
 
-See [here](https://www.terraform.io/docs/modules/index.html) for more
-details on Terraform modules and the standard module structure.
+- Creating an SNS topic in an AWS account
+- Subscribing the email associated with the account to the new SNS
+  topic
+
+The intent is to create an SNS topic to which messages will be sent
+when CloudWatch alarms trigger.
 
 ## Usage ##
 
 ```hcl
 module "example" {
+  providers = {
+    aws = aws
+    aws.organizations_read_only = aws.organizations_read_only
+  }
   source = "github.com/cisagov/cw-alarm-sns-tf-module"
-
-  aws_region            = "us-west-1"
-  aws_availability_zone = "b"
-  subnet_id             = "subnet-0123456789abcdef0"
 }
 ```
-
-## Examples ##
-
-- [Basic usage](https://github.com/cisagov/cw-alarm-sns-tf-module/tree/develop/examples/basic_usage)
 
 ## Requirements ##
 
@@ -42,6 +35,7 @@ module "example" {
 | Name | Version |
 |------|---------|
 | aws | ~> 3.38 |
+| aws.organizations\_read\_only | ~> 3.38 |
 
 ## Modules ##
 
@@ -51,41 +45,29 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_instance.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| [aws_ami.example](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
-| [aws_default_tags.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/default_tags) | data source |
+| [aws_sns_topic.cloudwatch_alarm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
+| [aws_sns_topic_subscription.account_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
+| [aws_caller_identity.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_organizations_organization.org](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ami\_owner\_account\_id | The ID of the AWS account that owns the Example AMI, or "self" if the AMI is owned by the same account as the provisioner. | `string` | `"self"` | no |
-| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | `string` | `"a"` | no |
-| aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
-| subnet\_id | The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0). | `string` | n/a | yes |
+| topic\_display\_name | The display name of the SNS topic. | `string` | `"cloudwatch_alarms"` | no |
+| topic\_name | The name of the SNS topic. | `string` | `"cloudwatch-alarms"` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| arn | The EC2 instance ARN. |
-| availability\_zone | The AZ where the EC2 instance is deployed. |
-| id | The EC2 instance ID. |
-| private\_ip | The private IP of the EC2 instance. |
-| subnet\_id | The ID of the subnet where the EC2 instance is deployed. |
+| sns\_topic | The SNS topic to which a message is sent when a CloudWatch alarm is triggered. |
 
 ## Notes ##
 
 Running `pre-commit` requires running `terraform init` in every directory that
 contains Terraform code. In this repository, these are the main directory and
 every directory under `examples/`.
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
 
 ## Contributing ##
 
