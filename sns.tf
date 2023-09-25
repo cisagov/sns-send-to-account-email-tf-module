@@ -4,8 +4,9 @@
 # ------------------------------------------------------------------------------
 
 resource "aws_sns_topic" "cloudwatch_alarm" {
-  name         = var.topic_name
-  display_name = var.topic_display_name
+  name              = var.topic_name
+  display_name      = var.topic_display_name
+  kms_master_key_id = var.topic_kms_encryption_key_id
 }
 
 resource "aws_sns_topic_subscription" "account_email" {

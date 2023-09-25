@@ -55,6 +55,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | topic\_display\_name | The display name of the SNS topic. | `string` | `"cloudwatch_alarms"` | no |
+| topic\_kms\_encryption\_key\_id | The ID of the KMS key used to encrypt the SNS messages at rest.  By default the SNS service key is used. | `string` | `"alias/aws/sns"` | no |
 | topic\_name | The name of the SNS topic. | `string` | `"cloudwatch-alarms"` | no |
 
 ## Outputs ##
