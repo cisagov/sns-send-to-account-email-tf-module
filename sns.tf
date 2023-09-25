@@ -9,8 +9,18 @@ resource "aws_sns_topic" "this" {
   display_name = var.topic_display_name
 }
 
+moved {
+  from = aws_sns_topic.cloudwatch_alarm
+  to   = aws_sns_topic.this
+}
+
 resource "aws_sns_topic_subscription" "this" {
   endpoint  = local.this_account_email
   protocol  = "email"
   topic_arn = aws_sns_topic.this.arn
+}
+
+moved {
+  from = aws_sns_topic_subscription.account_email
+  to   = aws_sns_topic_subscription.this
 }
