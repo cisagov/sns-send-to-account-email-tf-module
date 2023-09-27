@@ -1,15 +1,12 @@
-# cw-alarm-sns-tf-module #
+# sns-send-to-account-email-tf-module #
 
-[![GitHub Build Status](https://github.com/cisagov/cw-alarm-sns-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/cw-alarm-sns-tf-module/actions)
+[![GitHub Build Status](https://github.com/cisagov/sns-send-to-account-email-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/sns-send-to-account-email-tf-module/actions)
 
 A Terraform module for:
 
 - Creating an SNS topic in an AWS account
 - Subscribing the email associated with the account to the new SNS
   topic
-
-The intent is to create an SNS topic to which messages will be sent
-when CloudWatch alarms trigger.
 
 ## Usage ##
 
@@ -19,7 +16,10 @@ module "example" {
     aws = aws
     aws.organizations_read_only = aws.organizations_read_only
   }
-  source = "github.com/cisagov/cw-alarm-sns-tf-module"
+  source = "github.com/cisagov/sns-send-to-account-email-tf-module"
+
+  topic_display_name = "My SNS topic"
+  topic_name = "my_sns_topic"
 }
 ```
 
@@ -45,8 +45,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_sns_topic.cloudwatch_alarm](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
-| [aws_sns_topic_subscription.account_email](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
+| [aws_sns_topic.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
+| [aws_sns_topic_subscription.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
 | [aws_caller_identity.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_organizations_organization.org](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
 
@@ -54,14 +54,14 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| topic\_display\_name | The display name of the SNS topic. | `string` | `"cloudwatch_alarms"` | no |
-| topic\_name | The name of the SNS topic. | `string` | `"cloudwatch-alarms"` | no |
+| topic\_display\_name | The display name of the SNS topic. | `string` | n/a | yes |
+| topic\_name | The name of the SNS topic. | `string` | n/a | yes |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| sns\_topic | The SNS topic to which a message is sent when a CloudWatch alarm is triggered. |
+| sns\_topic | The SNS topic to which a message can be sent to forward it on to the email associated with the account. |
 
 ## Notes ##
 
