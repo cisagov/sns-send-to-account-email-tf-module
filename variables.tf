@@ -20,6 +20,6 @@ variable "topic_name" {
 # ------------------------------------------------------------------------------
 variable "topic_access_policy" {
   default     = null
-  description = "The fully-formed JSOM IAM access policy to apply to the SNS topic."
+  description = "The fully-formed JSON IAM access policy to apply to the SNS topic."
   type        = string
 }
