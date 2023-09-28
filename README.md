@@ -54,6 +54,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| topic\_access\_policy | The fully-formed JSOM IAM access policy to apply to the SNS topic. | `string` | `null` | no |
 | topic\_display\_name | The display name of the SNS topic. | `string` | n/a | yes |
 | topic\_name | The name of the SNS topic. | `string` | n/a | yes |
 

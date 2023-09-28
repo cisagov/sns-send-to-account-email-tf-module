@@ -5,8 +5,9 @@
 # ------------------------------------------------------------------------------
 
 resource "aws_sns_topic" "this" {
-  name         = var.topic_name
   display_name = var.topic_display_name
+  name         = var.topic_name
+  policy       = var.topic_access_policy
 }
 
 moved {

@@ -12,3 +12,14 @@ variable "topic_name" {
   description = "The name of the SNS topic."
   type        = string
 }
+
+# ------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+#
+# These parameters have reasonable defaults.
+# ------------------------------------------------------------------------------
+variable "topic_access_policy" {
+  default     = null
+  description = "The fully-formed JSOM IAM access policy to apply to the SNS topic."
+  type        = string
+}
