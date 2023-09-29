@@ -23,7 +23,7 @@ variable "topic_access_policy" {
   description = "The fully-formed JSON IAM access policy to apply to the SNS topic."
   type        = string
   validation {
-    condition     = can(jsondecode(var.topic_access_policy))
-    error_message = "The topic_access_policy value must be a string consisting of valid JSON."
+    condition     = var.topic_access_policy == null || can(jsondecode(var.topic_access_policy))
+    error_message = "The topic_access_policy value must be null or a string consisting of valid JSON."
   }
 }
