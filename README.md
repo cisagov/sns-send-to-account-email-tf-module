@@ -23,19 +23,20 @@ module "example" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.0 |
-| aws | ~> 3.38 |
+| aws | ~> 4.9 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.38 |
-| aws.organizations\_read\_only | ~> 3.38 |
+| aws | ~> 4.9 |
+| aws.organizations\_read\_only | ~> 4.9 |
 
 ## Modules ##
 
@@ -63,6 +64,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | sns\_topic | The SNS topic to which a message can be sent to forward it on to the email associated with the account. |
+<!-- END_TF_DOCS -->
 
 ## Notes ##
 
