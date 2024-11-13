@@ -5,11 +5,13 @@
 # ------------------------------------------------------------------------------
 variable "topic_display_name" {
   description = "The display name of the SNS topic."
+  nullable    = false
   type        = string
 }
 
 variable "topic_name" {
   description = "The name of the SNS topic."
+  nullable    = false
   type        = string
 }
 
@@ -21,6 +23,7 @@ variable "topic_name" {
 variable "topic_access_policy" {
   default     = null
   description = "The fully-formed JSON IAM access policy to apply to the SNS topic."
+  nullable    = true
   type        = string
   validation {
     condition     = var.topic_access_policy == null || can(jsondecode(var.topic_access_policy))
