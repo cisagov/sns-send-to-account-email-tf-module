@@ -16,7 +16,7 @@ module "example" {
     aws = aws
     aws.organizations_read_only = aws.organizations_read_only
   }
-  source = "github.com/cisagov/sns-send-to-account-email-tf-module"
+  source = "github.com/cisagov/sns-send-to-account-email-tf-module?ref=v1.0.0"
 
   topic_display_name = "My SNS topic"
   topic_name = "my_sns_topic"
