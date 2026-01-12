@@ -1,6 +1,8 @@
 # sns-send-to-account-email-tf-module #
 
 [![GitHub Build Status](https://github.com/cisagov/sns-send-to-account-email-tf-module/workflows/build/badge.svg)](https://github.com/cisagov/sns-send-to-account-email-tf-module/actions)
+[![License](https://img.shields.io/github/license/cisagov/sns-send-to-account-email-tf-module)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/sns-send-to-account-email-tf-module/workflows/CodeQL/badge.svg)](https://github.com/cisagov/sns-send-to-account-email-tf-module/actions/workflows/codeql-analysis.yml)
 
 A Terraform module for:
 
