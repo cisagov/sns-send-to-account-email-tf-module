@@ -29,14 +29,14 @@ module "example" {
 ## Requirements ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | terraform | >= 1.1 |
 | aws | >= 4.9 |
 
 ## Providers ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | aws | >= 4.9 |
 | aws.organizations\_read\_only | >= 4.9 |
 
@@ -47,7 +47,7 @@ No modules.
 ## Resources ##
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_sns_topic.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_subscription.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_subscription) | resource |
 | [aws_caller_identity.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
@@ -56,7 +56,7 @@ No modules.
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | topic\_access\_policy | The fully-formed JSON IAM access policy to apply to the SNS topic. | `string` | `null` | no |
 | topic\_display\_name | The display name of the SNS topic. | `string` | n/a | yes |
 | topic\_name | The name of the SNS topic. | `string` | n/a | yes |
@@ -64,7 +64,7 @@ No modules.
 ## Outputs ##
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | sns\_topic | The SNS topic to which a message can be sent to forward it on to the email associated with the account. |
 <!-- END_TF_DOCS -->
 
